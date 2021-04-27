@@ -12,4 +12,11 @@ class Mentor:
             return 1
         return 0
 
+    def location_similarity(self, location):
+        if self.country == location:
+            return 1
+        return 0
+
+        
+
     
