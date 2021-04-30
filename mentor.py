@@ -2,7 +2,11 @@ import sys
 sys.path.append(".")
 from constants import Language, Country, Interest
 
-# Understands How Similar Mentors are to Mentees
+LANGUAGE_IMPORTANCE_SCORE = 0.20
+LOCATION_IMPORTANCE_SCORE = 0.20
+INTERESTS_IMPORTANCE_SCORE = 0.60
+
+# Understands Mentor Similarity Metric
 class Mentor:
 
     def __init__(self, name, language, interests, country):
@@ -23,29 +27,37 @@ class Mentor:
         return result
 
     def language_similarity(self, language):
-        values = language.split(",")
         total, matched = 0, 0
-        for value in values:
-            value = value.strip()
-            if Language(value) in self.language:
+        for value in language:
+            if value in self.language:
                 matched+=1
             total+=1
         return round(matched/total, 2)
 
     def location_similarity(self, location):
-        if self.country == Country(location):
+        if self.country == location:
             return 1.0
         return 0.0
 
     def interests_similarity(self, interests):
-        values = interests.split(",")
         total, matched = 0, 0
-        for value in values:
-            value = value.strip()
-            if Interest(value) in self.interests:
+        for value in interests:
+            if value in self.interests:
                 matched+=1
             total+=1
         return round(matched/total, 2)
+
+    def overall_similarity(self, mentee):
+        language_sim = self.language_similarity(mentee.language)
+        location_sim = self.location_similarity(mentee.country)
+        interests_sim = self.interests_similarity(mentee.interests)
+
+        total_sim = (LANGUAGE_IMPORTANCE_SCORE*language_sim) + (LOCATION_IMPORTANCE_SCORE*location_sim)+ (INTERESTS_IMPORTANCE_SCORE*interests_sim)
+
+        return total_sim 
+
+
+
 
 
 
