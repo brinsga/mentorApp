@@ -6,10 +6,11 @@ LANGUAGE_IMPORTANCE_SCORE = 0.20
 LOCATION_IMPORTANCE_SCORE = 0.20
 INTERESTS_IMPORTANCE_SCORE = 0.60
 
-# Understands Mentor Similarity Metric
+# Understands MentorMentee Similarity Metric
 class Mentor:
 
     def __init__(self, name, language, interests, country):
+        self.match = None
         try:
             self.name = name
             self.language = self.convertToEnum(language, Language)
@@ -63,10 +64,7 @@ class Mentor:
 
         return total_sim 
 
-
-
-
-
-
-
-    
+    def isMatched(self):
+        if self.match:
+            return True
+        return False
