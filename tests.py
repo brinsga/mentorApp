@@ -48,3 +48,11 @@ def test_findBestMenteeMatchForMentor():
     match3.addMentee(menteeB)
     match3.addMentee(menteeA)
     assert menteeB == match3.bestMentee(mentorA)
+
+def test_findUnmatchedMentors():
+    match2 = MentorMatch()
+    match2.addMentor(mentorA)
+    match2.addMentor(mentorB)
+    match2.addMentee(menteeA)
+    match2.bestMentor(mentee)
+    assert 1 == match2.numberOfUnmatchedMentors() 

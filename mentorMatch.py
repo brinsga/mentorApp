@@ -37,3 +37,16 @@ class MentorMatch():
 
     def addMentee(self, person):
         self.mentees.append(person)
+
+    def unmatchedPeopleCount(self, users):
+        count = 0
+        for user in users:
+            if not user.isMatched():
+                count+=1
+        return count 
+
+    def numberOfUnmatchedMentees(self):
+        return self.unmatchedPeopleCount(self.mentees)
+
+    def numberOfUnmatchedMentors(self):
+        return self.unmatchedPeopleCount(self.mentors)
