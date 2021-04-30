@@ -7,8 +7,10 @@ from mentorMatch import MentorMatch
 
 mentorA = Mentor("A", "English", "Computer Science", "United States")
 mentorB = Mentor("B", "English", "Computer Science, Data Science", "Germany")
-mentee = Mentor("MenteeA", "English", "Computer Science, Data Science", "United Kingdom")
+mentee = Mentor("Mentee", "English", "Computer Science, Data Science", "United Kingdom")
 menteeA = Mentor("MenteeA", "English", "Computer Science, Data Science, Machine Learning", "United Kingdom")
+menteeB = Mentor("MenteeB", "English", "Computer Science, Data Science", "United States")
+
 
 def test_mentorAMenteeBSpeaksEngHasSimilarityScoreOne():
     assert 1.0 == mentorA.language_similarity(mentee.language)
@@ -40,3 +42,9 @@ def test_findBestMentorMatchForMentee():
     match2.addMentor(mentorB)
     value = match2.bestMentor(mentee)
     assert mentorB == match2.bestMentor(mentee)
+
+def test_findBestMenteeMatchForMentor():
+    match3 = MentorMatch()
+    match3.addMentee(menteeB)
+    match3.addMentee(menteeA)
+    assert menteeB == match3.bestMentee(mentorA)

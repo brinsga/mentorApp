@@ -64,6 +64,9 @@ class Mentor:
 
         return total_sim 
 
+    def updateMatch(self, match):
+        self.match = match
+
     def isMatched(self):
         if self.match:
             return True

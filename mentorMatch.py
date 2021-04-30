@@ -11,19 +11,29 @@ class MentorMatch():
         self.mentors = []
         self.mentees = []
 
-    def bestMentor(self, toMatch):
+    def bestMatch(self, toMatch, users):
         best = None
         curr_best = 0.0
-        for mentor in self.mentors:
-            if not mentor.isMatched():
-                value = mentor.overall_similarity(toMatch)
+        for user in users:
+            if not user.isMatched():
+                value = user.overall_similarity(toMatch)
                 if value >= MATCH_THRESHOLD and value > curr_best:
                     curr_best = value
-                    best = mentor
+                    best = user
+        return best
+
+    def bestMentor(self, toMatch):
+        best = self.bestMatch(toMatch, self.mentors)
+        toMatch.updateMatch(best)
+        return best
+
+    def bestMentee(self, toMatch):
+        best = self.bestMatch(toMatch, self.mentees)
+        toMatch.updateMatch(best)
         return best
 
     def addMentor(self, person):
         self.mentors.append(person)
 
-    def addMentees(self, person):
+    def addMentee(self, person):
         self.mentees.append(person)
