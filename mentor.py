@@ -20,13 +20,11 @@ class Mentor:
 
     def convertToEnum(self, values, enumType):
         values = values.split(",")
-        print(values)
         result = set()
         for value in values:
             value = value.strip()
             if value!= "":
                 result.add(enumType(value))
-        print(result)
         return result
 
     def language_similarity(self, language):
@@ -60,7 +58,6 @@ class Mentor:
         language_sim = self.language_similarity(mentee.language)
         location_sim = self.location_similarity(mentee.country)
         interests_sim = self.interests_similarity(mentee.interests)
-
 
         total_sim = (LANGUAGE_IMPORTANCE_SCORE*language_sim) + (LOCATION_IMPORTANCE_SCORE*location_sim)+ (INTERESTS_IMPORTANCE_SCORE*interests_sim)
 
