@@ -27,7 +27,9 @@ def test_MenteeCSDSMLMentorCSMLShouldReturnInterestSimilarityZeroPointSixSeven()
 def test_overAllSimilarityScoreIs():
     assert 0.5 == mentorA.overall_similarity(mentee)
 
-
+def test_emptyMenteeEdgeCaseTesting():
+    menteeB = Mentor("", "", "", "")
+    assert 0.0 == mentorA.overall_similarity(menteeB)
 
 
     
